@@ -4,177 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smiles Initiative</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-body {font-family:'Poppins',Arial,sans-serif;margin:0;background:#fff7f0;color:#333;scroll-behavior:smooth;}
-a {text-decoration:none;}
-img {max-width:100%;display:block;border-radius:8px;}
-h1,h2,h3 {margin:0 0 15px 0;}
-section {padding:50px 20px;max-width:1000px;margin:auto;}
-.card {background:white;padding:30px;margin:20px 0;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
-button {background:#ff6b00;color:white;border:none;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:0.3s;}
-button:hover {background:#e65f00;}
-input, textarea {width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc;font-size:1em;}
-input:focus, textarea:focus {border-color:#ff6b00; outline:none;}
-header {background:linear-gradient(120deg,#ff6b00,#ff9b3d);color:white;text-align:center;padding:60px 20px;}
-header img {width:120px;margin-bottom:15px;border-radius:12px;}
-header h1 {font-size:3em;}
-header p {font-size:1.3em;font-weight:500;margin-top:10px;}
-nav {display:flex;justify-content:center;flex-wrap:wrap;gap:15px;background:white;box-shadow:0 2px 6px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000;padding:12px;}
-nav a {color:#ff6b00;font-weight:600;padding:8px 14px;border-radius:6px;transition:0.3s;}
-nav a:hover {background:#ff9b3d;color:white;}
-.gallery, .videos {display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
-footer {background:#333;color:white;text-align:center;padding:25px 10px;}
-footer a {color:white;margin:0 10px;font-size:1.5em;transition:0.3s;}
-footer a:hover {color:#ff6b00;}
-@media(max-width:768px){nav{flex-direction:column;gap:10px;}}
+  body {font-family: Arial, sans-serif; margin:0; padding:0; background:#fff7f0;}
+  
+  /* Header with logo */
+  header {background:#ff6b00; color:white; text-align:center; padding:40px 20px;}
+  header img {width:120px; border-radius:12px; margin-bottom:15px;}
+  header h1 {margin:0; font-size:2.5em;}
+  header p {margin:5px 0 0 0; font-size:1.2em;}
+  
+  /* Navigation */
+  nav {background:#ff9b3d; padding:15px; text-align:center;}
+  nav a {color:white; margin:0 10px; text-decoration:none; font-weight:bold;}
+  nav a:hover {text-decoration:underline;}
+  
+  /* Sections */
+  section {padding:50px 20px; max-width:900px; margin:auto;}
+  h2 {color:#ff6b00;}
 </style>
 </head>
 <body>
 
+<!-- Header with logo -->
 <header>
-<img src="images/smileslogo.jpg" alt="Smiles Initiative Logo">
-<h1>😊 Smiles Initiative</h1>
-<p>Small Acts, Big Smiles</p>
+  <img src="smileslogo.png" alt="Smiles Initiative Logo">
+  <h1>😊 Smiles Initiative</h1>
+  <p>Small Acts, Big Smiles</p>
 </header>
 
+<!-- Navigation -->
 <nav>
-<a href="#about">About</a>
-<a href="#blog">Blog</a>
-<a href="#gallery">Gallery</a>
-<a href="#videos">Videos</a>
-<a href="#donate">Donate</a>
-<a href="#volunteer">Volunteer</a>
-<a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="#blog">Blog</a>
+  <a href="#images">Images</a>
+  <a href="#videos">Videos</a>
+  <a href="#contact">Contact</a>
+  <a href="#volunteer">Volunteer</a>
+  <a href="#donation">Donate</a>
 </nav>
 
+<!-- About Section -->
 <section id="about">
-<div class="card">
-<h2>About Us</h2>
-<p>Smiles Initiative is a grassroots, volunteer-driven movement committed to restoring dignity, hope, and opportunity among vulnerable communities. Our work spans education, health, mental wellbeing, welfare, environment, entrepreneurship, and empowerment through seminars and workshops.</p>
-</div>
+  <h2>About</h2>
+  <p>Smiles Initiative is a grassroots, volunteer-driven movement focused on education, health, welfare, and community empowerment.</p>
 </section>
 
+<!-- Blog Section -->
 <section id="blog">
-<div class="card">
-<h2>Our 13 Pillars of Impact</h2>
-<ul>
-<li><b>Education:</b> Access to schooling, mentorship, and learning resources.</li>
-<li><b>Health:</b> Medical outreach, hygiene education, and care support.</li>
-<li><b>Mental Wellbeing:</b> Emotional support and awareness programs.</li>
-<li><b>Welfare:</b> Food, clothing, and emergency assistance.</li>
-<li><b>Environment:</b> Community clean-ups, tree planting, sustainability.</li>
-<li><b>Entrepreneurship:</b> Supporting small businesses and income initiatives.</li>
-<li><b>Youth Empowerment:</b> Leadership and skill-building programs.</li>
-<li><b>Elderly Support:</b> Visiting and assisting seniors with care.</li>
-<li><b>Community Seminars:</b> Education on health, finance, and development.</li>
-<li><b>Workshops:</b> Vocational and practical life skills.</li>
-<li><b>Partnerships:</b> Collaboration for greater impact.</li>
-<li><b>Volunteerism:</b> Building a culture of service.</li>
-<li><b>Faith & Values:</b> Promoting integrity, compassion, and unity.</li>
-</ul>
-</div>
+  <h2>Blog</h2>
+  <p>Read about our initiatives and community projects.</p>
 </section>
 
-<section id="gallery">
-<div class="card">
-<h2>Photo Gallery</h2>
-<div class="gallery">
-<img src="images/gallery1.jpg" alt="Event 1">
-<img src="images/gallery2.jpg" alt="Event 2">
-<img src="images/gallery3.jpg" alt="Event 3">
-</div>
-</div>
+<!-- Images Section -->
+<section id="images">
+  <h2>Images</h2>
+  <p>Photo gallery coming soon.</p>
 </section>
 
+<!-- Videos Section -->
 <section id="videos">
-<div class="card">
-<h2>Video Gallery</h2>
-<div class="videos">
-<video controls src="videos/sample.mp4"></video>
-</div>
-</div>
+  <h2>Videos</h2>
+  <p>Video gallery coming soon.</p>
 </section>
 
-<section id="donate">
-<div class="card">
-<h2>Donate</h2>
-<p><b>Support via Safaricom BuyGoods Till: 3422420</b></p>
-<button onclick="alert('Thank you for supporting Smiles Initiative!')">I Have Donated</button>
-</div>
-</section>
-
-<section id="volunteer">
-<div class="card">
-<img src="images/smileslogo.jpg" alt="Smiles Initiative Logo" style="width:80px;margin-bottom:15px;display:block;margin-left:auto;margin-right:auto;border-radius:12px;">
-<h2>Volunteer With Us</h2>
-<p>Join our mission! Fill out the form below and one of our coordinators will reach out to you.</p>
-
-<form id="volunteerForm">
-<label for="name">Full Name *</label>
-<input type="text" id="name" name="Name" placeholder="Enter your full name" required>
-
-<label for="age">Age</label>
-<input type="number" id="age" name="Age" placeholder="Your age" min="10" max="100">
-
-<label for="area">Area *</label>
-<input type="text" id="area" name="Area" placeholder="Your area / location" required>
-
-<label for="email">Email *</label>
-<input type="email" id="email" name="Email" placeholder="you@example.com" required>
-
-<label for="phone">Phone Number</label>
-<input type="tel" id="phone" name="Phone" placeholder="+254 700 000 000">
-
-<label for="reason">Why do you want to volunteer? *</label>
-<textarea id="reason" name="Reason" placeholder="Share your motivation..." required></textarea>
-
-<button type="submit">Submit</button>
-</form>
-
-<p id="formMessage" style="margin-top:15px;color:green;font-weight:bold;display:none;">Thank you for volunteering! One of our coordinators will reach out soon.</p>
-</div>
-</section>
-
+<!-- Contact Section -->
 <section id="contact">
-<div class="card">
-<h2>Contact Us</h2>
-<p>Email: <b>smilesinitiative254@gmail.com</b></p>
-<p>Location: Kenya</p>
-<p>Phone: +254 790 054 787</p>
-</div>
+  <h2>Contact</h2>
+  <p>Email: smilesinitiative254@gmail.com</p>
+  <p>Phone: +254 790 054 787</p>
 </section>
 
-<footer>
-<p>Follow Us</p>
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-tiktok"></i></a>
-<a href="#"><i class="fab fa-youtube"></i></a>
-<p>© 2026 Smiles Initiative</p>
-</footer>
+<!-- Volunteer Section -->
+<section id="volunteer">
+  <h2>Volunteer</h2>
+  <p>Join us and make a difference!</p>
+</section>
 
-<script>
-const form = document.getElementById('volunteerForm');
-const message = document.getElementById('formMessage');
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const formData = new FormData(form);
-  fetch('https://formspree.io/f/yourformid', {
-    method: 'POST',
-    headers: {'Accept': 'application/json'},
-    body: formData
-  }).then(response => {
-    if(response.ok){
-      form.reset();
-      message.style.display = 'block';
-    } else {
-      alert('Oops! Something went wrong. Please try again.');
-    }
-  }).catch(() => alert('Network error. Please check your connection.'));
-});
-</script>
+<!-- Donation Section -->
+<section id="donation">
+  <h2>Donate</h2>
+  <p>Support via Safaricom BuyGoods Till: 3422420</p>
+</section>
 
 </body>
   </html>
