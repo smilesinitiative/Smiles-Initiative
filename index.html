@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smiles Initiative</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff6b00">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<style>
+body{font-family:Poppins,Arial;margin:0;background:#fff7f0;color:#2b2b2b}
+header{background:linear-gradient(120deg,#ff6b00,#ff9b3d);color:white;padding:40px 20px;text-align:center}
+nav{display:flex;justify-content:center;gap:18px;background:white;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08);position:sticky;top:0}
+nav a{text-decoration:none;color:#ff6b00;font-weight:600}
+section{padding:28px;margin:18px auto;background:white;border-radius:14px;max-width:1000px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+h2{color:#ff6b00;margin-top:0}
+button{background:#ff6b00;color:white;border:none;padding:12px 18px;border-radius:8px;font-weight:600;cursor:pointer}
+button:hover{background:#e65f00}
+input,textarea{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #ddd}
+.card{background:#fff4ea;padding:18px;border-radius:12px;margin-top:12px}
+#adminPanel{display:none}
+</style>
+</head>
+<body>
+<header>
+<h1>Smiles Initiative</h1>
+<p>Small Acts, Big Smiles</p>
+</header>
+
+<nav>
+<a href="#blog">Blog</a>
+<a href="#donate">Donate</a>
+<a href="#volunteer">Volunteer</a>
+<a href="#admin">Admin</a>
+</nav>
+
+<section id="blog">
+<h2>Community Blog</h2>
+<div id="posts"></div>
+</section>
+
+<section id="donate">
+<h2>M-Pesa BuyGoods Till 3224420</h2>
+<button onclick="recordDonation()">I Have Donated</button>
+</section>
+
+<section id="volunteer">
+<h2>Volunteer With Us</h2>
+<form onsubmit="submitVolunteer(event)">
+<input id="name" placeholder="Full Name" required>
+<input id="age" placeholder="Age" required>
+<input id="area" placeholder="Area" required>
+<input id="email" type="email" placeholder="Email" required>
+<input id="phone" placeholder="Phone Number" required>
+<textarea id="reason" placeholder="Why do you wish to volunteer?" required></textarea>
+<button type="submit">Submit</button>
+</form>
+</section>
+
+<section id="admin">
+<h2>Admin Dashboard</h2>
+<button onclick="loginAdmin()">Login</button>
+<div id="adminPanel">
+
+<div class="card">
+<h3>Total Donations</h3>
+<h1 id="donCount">0</h1>
+</div>
+
+<div class="card">
+<h3>Add Blog Post</h3>
+<input id="postTitle" placeholder="Post title">
+<textarea id="postBody" placeholder="Post content"></textarea>
+<button onclick="addPost()">Publish</button>
+</div>
+
+<div class="card">
+<h3>Upload Gallery Image</h3>
+<input type="file" id="imgUpload">
+<button onclick="uploadImage()">Upload</button>
+<div id="gallery"></div>
+</div>
+
+<div class="card">
+<h3>Volunteers</h3>
+<ul id="volList"></ul>
+</div>
+
+</div>
+</section>
+
+<script>
+// 🔹 REPLACE WITH YOUR FIREBASE CONFIG
+const firebaseConfig={apiKey:"YOURKEY",authDomain:"",databaseURL:"",projectId:"",storageBucket:""};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.database();
+const storage=firebase.storage();
+
+// DONATIONS
+function recordDonation(){db.ref('donations').transaction(v=>(v||0)+1);alert('Thank you for donating!');}
+db.ref('donations').on('value',s=>donCount.innerText=s.val()||0);
+
+// VOLUNTEERS - AUTOMATED EMAIL VIA FIREBASE EXTENSION (NO MAILTO)
+function submitVolunteer(e){
+e.preventDefault();
+const data={name:name.value,age:age.value,area:area.value,email:email.value,phone:phone.value,reason:reason.value};
+db.ref('volunteers').push(data);
+alert('Thank you for volunteering. You will receive an email confirmation shortly.');
+e.target.reset();}
+
+// LOAD VOLUNTEERS
+function loadVolunteers(){db.ref('volunteers').on('value',snap=>{volList.innerHTML='';snap.forEach(v=>{let li=document.createElement('li');li.innerText=v.val().name+' - '+v.val().phone;volList.appendChild(li);});});}
+
+// BLOG POSTS
+function addPost(){
+const post={title:postTitle.value,body:postBody.value,date:new Date().toLocaleDateString()};
+db.ref('posts').push(post);
+postTitle.value='';postBody.value='';}
+
+db.ref('posts').on('value',snap=>{
+posts.innerHTML='';
+snap.forEach(p=>{
+let d=p.val();
+posts.innerHTML+=`<div class='card'><h3>${d.title}</h3><p>${d.body}</p><small>${d.date}</small></div>`;
+});});
+
+// IMAGE UPLOAD
+function uploadImage(){
+let file=document.getElementById('imgUpload').files[0];
+let ref=storage.ref('gallery/'+file.name);
+ref.put(file).then(()=>ref.getDownloadURL()).then(url=>{
+db.ref('gallery').push(url);
+});}
+
+db.ref('gallery').on('value',snap=>{
+gallery.innerHTML='';
+snap.forEach(i=>{gallery.innerHTML+=`<img src='${i.val()}' style='width:150px;margin:5px;border-radius:10px'>`;});});
+
+// ADMIN LOGIN
+function loginAdmin(){
+let u=prompt('Username');
+let p=prompt('Password');
+if(u==='Michael smiles'&&p==='23@Njuwa'){adminPanel.style.display='block';loadVolunteers();}
+else alert('Wrong login');}
+
+// PWA SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+  .then(() => console.log('Service Worker Registered'));
+}
+</script>
+</body>
+  </html>
+  
